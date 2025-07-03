@@ -12,7 +12,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/register', { username, email, password });
+      await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/register`, { username, email, password });
       router.push('/login');
     } catch (err) {
       alert(err.response?.data?.message || 'Registration failed');
