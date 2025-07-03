@@ -1,0 +1,16 @@
+# Node modules (both frontend & backend)
+node_modules/
+
+# Next.js build output
+frontend/.next/
+
+# Environment variables
+backend/.env
+frontend/.env.local
+
+# Logs
+*.log
+
+# Mac / Windows system files
+.DS_Store
+Thumbs.db
