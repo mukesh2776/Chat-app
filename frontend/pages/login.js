@@ -10,11 +10,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`, { email, password });
-=======
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/login`, { email, password });
->>>>>>> 2cfd03e85355ba34e5a679cd30fa88e26d2b70d9
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('username', res.data.user.username);
       router.push('/chat');
