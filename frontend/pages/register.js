@@ -12,6 +12,8 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      console.log('Registering:', username, email, password);
+
       await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/register`, { username, email, password });
       router.push('/login');
     } catch (err) {
