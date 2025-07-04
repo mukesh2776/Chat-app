@@ -18,12 +18,21 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email, password });
-    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+    console.log('Login attempt:', email);  // log email
 
+    const user = await User.findOne({ email, password });
+    console.log('User found:', user); // log user
+
+    if (!user) {
+      console.log('Invalid credentials');
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    console.log('Creating token with secret:', process.env.JWT_SECRET);
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token, user });
   } catch (err) {
-    res.status(500).json({ message: 'Login failed' });
+    console.error('Login error:', err);
+    res.status(500).json({ message: 'Login failed', error: err.message });
   }
 };
