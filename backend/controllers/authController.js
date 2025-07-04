@@ -4,13 +4,16 @@ const jwt = require('jsonwebtoken');
 exports.register = async (req, res) => {
   try {
     const { email, password, username } = req.body;
+    console.log('Registering:', username, email, password);  // log incoming data
     const newUser = new User({ email, password, username });
     await newUser.save();
     res.status(201).json({ user: newUser });
   } catch (err) {
-    res.status(400).json({ message: 'Registration failed' });
+    console.error('Registration error:', err);  // log real error
+    res.status(400).json({ message: 'Registration failed', error: err.message });
   }
 };
+
 
 exports.login = async (req, res) => {
   try {
